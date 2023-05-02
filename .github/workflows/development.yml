@@ -39,24 +39,24 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Environment variables substitution
-        run: |
-          npx envsub .aws/task-definitions/development.json task-definition.json
-        env: # 환경변수들
-          PRODUCTION: dev
+      # - name: Environment variables substitution
+      #   run: |
+      #     npx envsub .aws/task-definitions/development.json task-definition.json
+      #   env: # 환경변수들
+      #     PRODUCTION: dev
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          container-name: unknown # 컨테이너 이름
-          image: ${{ steps.build-image.outputs.image }} # line 40에서 넘겨받은 value
+      # - name: Fill in the new image ID in the Amazon ECS task definition
+      #   id: task-def
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with:
+      #     task-definition: task-definition.json
+      #     container-name: unknown # 컨테이너 이름
+      #     image: ${{ steps.build-image.outputs.image }} # line 40에서 넘겨받은 value
 
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: test # 서비스 이름
-          cluster: bm-cluster # 클러스터 이름
-          # wait-for-service-stability: true #
+      # - name: Deploy Amazon ECS task definition
+      #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      #   with:
+      #     task-definition: ${{ steps.task-def.outputs.task-definition }}
+      #     service: test # 서비스 이름
+      #     cluster: bm-cluster # 클러스터 이름
+      #     # wait-for-service-stability: true #

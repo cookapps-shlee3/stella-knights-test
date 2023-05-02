@@ -3,195 +3,195 @@ import os
 
 class Settings:
     
-    ENVIRONMENT = os.environ.get('PRODUCTION')
+    # ENVIRONMENT = os.environ.get('PRODUCTION')
     
     PORT = 8001
     
-    # if ENVIRONMENT == 'prod':
+#     # if ENVIRONMENT == 'prod':
         
-    #     AES_KEY = 'BUnknown!@K3456M'
+#     #     AES_KEY = 'BUnknown!@K3456M'
         
-    #     DB_USERNAME : str = os.environ.get('DB_USERNAME_PROD')
-    #     DB_PASSWORD = os.environ.get('DB_PASSWORD_PROD')
-    #     DB_HOST : str = os.environ.get('DB_HOST_PROD')
-    #     DB_PORT : str = os.environ.get('DB_PORT_PROD')
-    #     DB_DATABASE : str = os.environ.get('DB_DATABASE_PROD')
+#     #     DB_USERNAME : str = os.environ.get('DB_USERNAME_PROD')
+#     #     DB_PASSWORD = os.environ.get('DB_PASSWORD_PROD')
+#     #     DB_HOST : str = os.environ.get('DB_HOST_PROD')
+#     #     DB_PORT : str = os.environ.get('DB_PORT_PROD')
+#     #     DB_DATABASE : str = os.environ.get('DB_DATABASE_PROD')
 
-    #     MONGO_URL = os.environ.get('MONGO_URL_PROD')
-    #     MONGO_DATABASE= os.environ.get('MONGO_DATABASE_PROD')
-    #     MONGO_COLLECTION = os.environ.get('MONGO_COLLECTION_PROD')
+#     #     MONGO_URL = os.environ.get('MONGO_URL_PROD')
+#     #     MONGO_DATABASE= os.environ.get('MONGO_DATABASE_PROD')
+#     #     MONGO_COLLECTION = os.environ.get('MONGO_COLLECTION_PROD')
 
-    #     REDIS_HOST : str = os.environ.get('REDIS_HOST_PROD')
-    #     REDIS_PORT : str = os.environ.get('REDIS_PORT_PROD')
-    #     REDIS_DATABASE : int = 0
+#     #     REDIS_HOST : str = os.environ.get('REDIS_HOST_PROD')
+#     #     REDIS_PORT : str = os.environ.get('REDIS_PORT_PROD')
+#     #     REDIS_DATABASE : int = 0
         
-    #     RABBITMQ_ENABLE : bool = True
-    #     RABBITMQ_HOST : str = os.environ.get('RABBITMQ_PROD')
+#     #     RABBITMQ_ENABLE : bool = True
+#     #     RABBITMQ_HOST : str = os.environ.get('RABBITMQ_PROD')
         
-    #     # RABBITMQ_HOST = 'amqp://guest:guest@ec2-35-92-99-178.us-west-2.compute.amazonaws.com:5672'
+#     #     # RABBITMQ_HOST = 'amqp://guest:guest@ec2-35-92-99-178.us-west-2.compute.amazonaws.com:5672'
         
-    #     LOCATION : str = os.environ.get('LOCATION_CODE')
+#     #     LOCATION : str = os.environ.get('LOCATION_CODE')
 
-    #     USE_PRE_DEST:bool = False
-    #     PRE_DEST_VERSION:int = 1024
-    #     PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-    #     PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-    #     PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
-    #     PRE_LANG_VER:int = 482
-    #     PRE_SPEC_VER:int = 2708
+#     #     USE_PRE_DEST:bool = False
+#     #     PRE_DEST_VERSION:int = 1024
+#     #     PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#     #     PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#     #     PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#     #     PRE_LANG_VER:int = 482
+#     #     PRE_SPEC_VER:int = 2708
         
         
-    #     CURRENT_DEST:str = 'https://unknown.bm.cookappsgames.com/'
-    #     CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/prod/unknown-knight-{0}-{1}.json'
-    #     CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/prod/unknown-knight-spec-{0}.json'
+#     #     CURRENT_DEST:str = 'https://unknown.bm.cookappsgames.com/'
+#     #     CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/prod/unknown-knight-{0}-{1}.json'
+#     #     CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/prod/unknown-knight-spec-{0}.json'
         
-    if ENVIRONMENT == 'dev':
+#     if ENVIRONMENT == 'dev':
         
-        # AES_KEY = 'BUnknown!@K3456M'
+#         # AES_KEY = 'BUnknown!@K3456M'
         
-        DB_USERNAME : str = "admin"
-        DB_PASSWORD = "qAvZfEVBv5KZjPT2JQHY"
-        DB_HOST : str = "saju-db-prod.cavrntzv1fhs.ap-northeast-2.rds.amazonaws.com"
-        DB_PORT : str = "3306"
-        DB_DATABASE : str = "stella-knight-test"
+#         DB_USERNAME : str = "admin"
+#         DB_PASSWORD = "qAvZfEVBv5KZjPT2JQHY"
+#         DB_HOST : str = "saju-db-prod.cavrntzv1fhs.ap-northeast-2.rds.amazonaws.com"
+#         DB_PORT : str = "3306"
+#         DB_DATABASE : str = "stella-knight-test"
         
-        MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
-        MONGO_DATABASE= 'log'
-        MONGO_COLLECTION = 'log'
-        # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
+#         MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+#         MONGO_DATABASE= 'log'
+#         MONGO_COLLECTION = 'log'
+#         # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
 
-        REDIS_HOST : str = "localhost"
-        REDIS_PORT : int = 6379
-        REDIS_DATABASE : int = 0
+#         REDIS_HOST : str = "localhost"
+#         REDIS_PORT : int = 6379
+#         REDIS_DATABASE : int = 0
         
-        RABBITMQ_ENABLE = False
-        RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
+#         RABBITMQ_ENABLE = False
+#         RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
         
-        LOCATION = 'GLOBAL'
+#         LOCATION = 'GLOBAL'
         
-        USE_PRE_DEST:bool = False
-        PRE_DEST_VERSION:int = 1004
-        PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
-        PRE_LANG_VER:int = 277
-        PRE_SPEC_VER:int = 1931
+#         USE_PRE_DEST:bool = False
+#         PRE_DEST_VERSION:int = 1004
+#         PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#         PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#         PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#         PRE_LANG_VER:int = 277
+#         PRE_SPEC_VER:int = 1931
         
-        CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#         CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#         CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#         CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
         
         
-    # elif ENVIRONMENT == 'stage':
+#     # elif ENVIRONMENT == 'stage':
         
-    #     AES_KEY = 'BUnknown!@K3456M'
+#     #     AES_KEY = 'BUnknown!@K3456M'
         
-    #     DB_USERNAME : str = "user_stage"
-    #     DB_PASSWORD = "StageUser123$"
-    #     DB_HOST : str = "bm-staging-db-instance-1.czlr7v844fol.ap-northeast-2.rds.amazonaws.com"
-    #     DB_PORT : str = "3306"
-    #     DB_DATABASE : str = "unknown_knight_idle_stage"
+#     #     DB_USERNAME : str = "user_stage"
+#     #     DB_PASSWORD = "StageUser123$"
+#     #     DB_HOST : str = "bm-staging-db-instance-1.czlr7v844fol.ap-northeast-2.rds.amazonaws.com"
+#     #     DB_PORT : str = "3306"
+#     #     DB_DATABASE : str = "unknown_knight_idle_stage"
         
-    #     MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
-    #     MONGO_DATABASE= 'afk-fortress-stage'
-    #     MONGO_COLLECTION = 'user_save'
-    #     # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
+#     #     MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+#     #     MONGO_DATABASE= 'afk-fortress-stage'
+#     #     MONGO_COLLECTION = 'user_save'
+#     #     # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
 
-    #     REDIS_HOST : str = "bm-py-test.vgui2q.ng.0001.apn2.cache.amazonaws.com"
-    #     REDIS_PORT : int = 6379
-    #     REDIS_DATABASE : int = 0
+#     #     REDIS_HOST : str = "bm-py-test.vgui2q.ng.0001.apn2.cache.amazonaws.com"
+#     #     REDIS_PORT : int = 6379
+#     #     REDIS_DATABASE : int = 0
         
-    #     RABBITMQ_ENABLE = True
-    #     RABBITMQ_HOST = 'amqp://guest:guest@ec2-35-92-99-178.us-west-2.compute.amazonaws.com:5672'
+#     #     RABBITMQ_ENABLE = True
+#     #     RABBITMQ_HOST = 'amqp://guest:guest@ec2-35-92-99-178.us-west-2.compute.amazonaws.com:5672'
         
-    #     LOCATION = 'GLOBAL'
+#     #     LOCATION = 'GLOBAL'
         
-    #     USE_PRE_DEST:bool = True
-    #     PRE_DEST_VERSION:int = 1023
-    #     PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-    #     PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-    #     PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
-    #     PRE_LANG_VER:int = 482
-    #     PRE_SPEC_VER:int = 2707
+#     #     USE_PRE_DEST:bool = True
+#     #     PRE_DEST_VERSION:int = 1023
+#     #     PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#     #     PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#     #     PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#     #     PRE_LANG_VER:int = 482
+#     #     PRE_SPEC_VER:int = 2707
 
-    #     CURRENT_DEST:str = 'https://game.bm.stage.cookapps.com/unknown-knight-idle/'
-    #     CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/stage/unknown-knight-{0}-{1}.json'
-    #     CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/stage/unknown-knight-spec-{0}.json'
+#     #     CURRENT_DEST:str = 'https://game.bm.stage.cookapps.com/unknown-knight-idle/'
+#     #     CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/stage/unknown-knight-{0}-{1}.json'
+#     #     CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/stage/unknown-knight-spec-{0}.json'
 
-###########################################################################
-    elif ENVIRONMENT == 'local':
-        AES_KEY = 'BUnknown!@K3456M'
+# ###########################################################################
+#     elif ENVIRONMENT == 'local':
+#         AES_KEY = 'BUnknown!@K3456M'
         
-        DB_USERNAME : str = "root"
-        DB_PASSWORD = "1q2w3e4r"
-        DB_HOST : str = "172.22.0.2"
-        DB_PORT : str = "3306"
-        DB_DATABASE : str = "unknown_knight_idle_dev"
+#         DB_USERNAME : str = "root"
+#         DB_PASSWORD = "1q2w3e4r"
+#         DB_HOST : str = "172.22.0.2"
+#         DB_PORT : str = "3306"
+#         DB_DATABASE : str = "unknown_knight_idle_dev"
         
-        MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
-        MONGO_DATABASE= 'log'
-        MONGO_COLLECTION = 'log'
-        # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
+#         MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+#         MONGO_DATABASE= 'log'
+#         MONGO_COLLECTION = 'log'
+#         # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?retryWrites=false"
 
-        REDIS_HOST : str = "localhost"
-        REDIS_PORT : int = 6379
-        REDIS_DATABASE : int = 0
+#         REDIS_HOST : str = "localhost"
+#         REDIS_PORT : int = 6379
+#         REDIS_DATABASE : int = 0
         
-        RABBITMQ_ENABLE = False
-        RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
+#         RABBITMQ_ENABLE = False
+#         RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
         
-        LOCATION = 'GLOBAL'
+#         LOCATION = 'GLOBAL'
         
-        USE_PRE_DEST:bool = False
-        PRE_DEST_VERSION:int = 1004
-        PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
-        PRE_LANG_VER:int = 277
-        PRE_SPEC_VER:int = 1931
+#         USE_PRE_DEST:bool = False
+#         PRE_DEST_VERSION:int = 1004
+#         PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#         PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#         PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#         PRE_LANG_VER:int = 277
+#         PRE_SPEC_VER:int = 1931
         
-        CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
- ###########################################################################
+#         CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+#         CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+#         CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+#  ###########################################################################
 
 
-    else:
+#     else:
         
-        AES_KEY = 'BUnknown!@K3456M'
-        
-        DB_USERNAME : str = "unknight_dev"
-        DB_PASSWORD = "Unknown123$"
-        DB_HOST : str = "playgrounds-dev-rds-cluster.cluster-czlr7v844fol.ap-northeast-2.rds.amazonaws.com"
-        DB_PORT : str = "3306"
-        DB_DATABASE : str = "unknown_knight_idle_dev"
-        
-        MONGO_URL = f"mongodb://mongodb:27017/?retryWrites=false"
-        MONGO_DATABASE= 'afk-fortress'
-        MONGO_COLLECTION = 'user_save'
-        # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+    # AES_KEY = 'BUnknown!@K3456M'
+    
+    DB_USERNAME : str = "admin"
+    DB_PASSWORD = "qAvZfEVBv5KZjPT2JQHY"
+    DB_HOST : str = "saju-db-prod.cavrntzv1fhs.ap-northeast-2.rds.amazonaws.com"
+    DB_PORT : str = "3306"
+    DB_DATABASE : str = "saju_db_prod"
+    
+    # MONGO_URL = f"mongodb://mongodb:27017/?retryWrites=false"
+    # MONGO_DATABASE= 'afk-fortress'
+    # MONGO_COLLECTION = 'user_save'
+    # MONGO_URL = f"mongodb://burgermonster:BurgerMonster15$$@docdb-dev-bm.cluster-czlr7v844fol.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 
-        REDIS_HOST : str = "localhost"
-        REDIS_PORT : int = 6379
-        REDIS_DATABASE : int = 0
-        
-        RABBITMQ_ENABLE = True
-        RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
-        
-        LOCATION = 'GLOBAL'
-        
-        USE_PRE_DEST:bool = False
-        PRE_DEST_VERSION:int = 1024
-        PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
-        PRE_LANG_VER:int = 482
-        PRE_SPEC_VER:int = 2708
-        
-        CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
-        CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
-        CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
- 
+    REDIS_HOST : str = "localhost"
+    REDIS_PORT : int = 6379
+    REDIS_DATABASE : int = 0
+    
+    # RABBITMQ_ENABLE = True
+    # RABBITMQ_HOST = 'amqp://guest:guest@127.0.0.1:5672'
+    
+    LOCATION = 'GLOBAL'
+    
+    USE_PRE_DEST:bool = False
+    # PRE_DEST_VERSION:int = 1024
+    # PRE_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+    # PRE_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+    # PRE_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+    # PRE_LANG_VER:int = 482
+    # PRE_SPEC_VER:int = 2708
+    
+    # CURRENT_DEST:str = 'https://game.bm.py.cookapps.com/unknown-knight-idle/'
+    # CURRENT_LANG_DEST:str = 'https://ss-game.s3.ap-northeast-2.amazonaws.com/unknown-knight/dev/unknown-knight-{0}-{1}.json'
+    # CURRENT_SPEC_DEST:str = 'https://d19otl8pcfrvqp.cloudfront.net/unknown-knight/dev/unknown-knight-spec-{0}.json'
+
     DATABASE_URL = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}?charset=utf8"
     
         
