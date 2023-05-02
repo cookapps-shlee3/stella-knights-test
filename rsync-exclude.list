@@ -1,0 +1,38 @@
+// Python Package
+venv/
+
+bin/
+include/
+lib/
+
+logs/
+
+*.mmdb
+*.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
+
+// Bianary Symlink
+python3
+pip3
+
+// Cache
+__pycache__
+
+.git
+.vscode
+.DS_Store
+src/recovery/backup
+srv/recovery/ltv
+
+deploy.sh
+deploy-stage.sh

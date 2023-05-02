@@ -1,0 +1,43 @@
+version: "3"
+
+volumes:
+  data:
+
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    volumes:
+      - data:/data
+    ports:
+      - 6379:6379
+
+  unknown-knight:
+    image: unknown-image
+    container_name: 'unknown-server'
+    build:
+      context: ../
+      dockerfile: Dockerfile.local
+    command:
+      [
+        "sh",
+        "-c",
+        "pip install debugpy && python -m debugpy --wait-for-client --listen 0.0.0.0:5678 -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8001"
+      ]
+    volumes:
+      - ../:/app
+    ports:
+      - '8001:8001'
+      - '5678:5678'
+    depends_on:
+      - redis
+      - mongodb

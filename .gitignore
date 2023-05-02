@@ -1,0 +1,28 @@
+// Python Package
+venv/
+
+*.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.vscode/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
+.idea/
+
+// Bianary Symlink
+python3
+pip3
+
+// Cache
+__pycache__
+
+.vscode/settings.json
+
+logs/*

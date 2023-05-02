@@ -1,0 +1,78 @@
+name: Deploy Prod
+
+on:
+  workflow_dispatch: # 수동 배포
+  push:
+    tags:
+      - 'build/**'
+    
+
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest # 실행 될 OS. Github Action에서 제공하는 우분투 최신버전
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 # Repository 체크아웃
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: unknown-knight # ECR리파지토리 이름
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./Dockerfile.prod .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Environment variables substitution
+        run: |
+          npx envsub .aws/task-definitions/production.json task-definition.json
+        env: # 환경변수들
+          PRODUCTION: prod
+          DB_USERNAME_PROD: ${{ secrets.DB_USERNAME_PROD }}
+          DB_PASSWORD_PROD: ${{ secrets.DB_PASSWORD_PROD }}
+          DB_HOST_PROD: ${{ secrets.DB_HOST_PROD }}
+          DB_PORT_PROD: ${{ secrets.DB_PORT_PROD }}
+          DB_DATABASE_PROD: ${{ secrets.DB_DATABASE_PROD }}
+          REDIS_HOST_PROD: ${{ secrets.REDIS_HOST_PROD }}
+          REDIS_PORT_PROD: ${{ secrets.REDIS_PORT_PROD }}
+          MONGO_URL_PROD: ${{ secrets.MONGO_URL_PROD }}
+          MONGO_DATABASE_PROD: ${{ secrets.MONGO_DATABASE_PROD }}
+          MONGO_COLLECTION_PROD: ${{ secrets.MONGO_COLLECTION_PROD }}
+          RABBITMQ_ENABLE_PROD: ${{ secrets.RABBITMQ_ENABLE_USA_PROD }}
+          RABBITMQ_PROD: ${{ secrets.RABBITMQ_USA_PROD }}
+          LOCATION_CODE : GLOBAL
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: unknown-knight # 컨테이너 이름
+          image: ${{ steps.build-image.outputs.image }} # line 40에서 넘겨받은 value
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: unknown-knight-prod # 서비스 이름
+          cluster: bm-cluster # 클러스터 이름
+          # wait-for-service-stability: true # 
