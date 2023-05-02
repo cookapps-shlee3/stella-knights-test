@@ -40,7 +40,7 @@ exceptions = {
 if settings.ENVIRONMENT == 'prod':
     app = FastAPI(docs_url=None, redoc_url=None, exception_handlers=exceptions)    
 elif (settings.ENVIRONMENT == 'dev') or (settings.ENVIRONMENT == 'stage') or (settings.ENVIRONMENT == 'local'):
-    print('-----local-0----------')
+    print('-----local-0-------------')
     app = FastAPI(openapi_prefix="/unknown-knight-idle", root_path="/unknown-knight-idle", exception_handlers=exceptions)
 else:
     app = FastAPI(exception_handlers=exceptions)
