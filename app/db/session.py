@@ -9,14 +9,19 @@ logging.basicConfig()
 logging.getLogger('sqlalchemy.pool').setLevel(logging.DEBUG)
 
 
-SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
+# SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
+
+SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://admin:qAvZfEVBv5KZjPT2JQHY@saju-db-prod.cavrntzv1fhs.ap-northeast-2.rds.amazonaws.com:3306/stella-knight-test?charset=utf8mb4'
 ENVIRONMENT = os.environ.get('PRODUCTION')
-if ENVIRONMENT == 'prod':
-    engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_recycle=(3600 * 7), pool_size=10, max_overflow=20, echo=False, echo_pool=True, pool_pre_ping=True)
-else:
-    engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_recycle=(3600 * 7), pool_size=3, max_overflow=5, echo=False, echo_pool=True, pool_pre_ping=True)
+
+# if ENVIRONMENT == 'prod':
+#     engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_recycle=(3600 * 7), pool_size=10, max_overflow=20, echo=False, echo_pool=True, pool_pre_ping=True)
+# else:
+#     engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_recycle=(3600 * 7), pool_size=3, max_overflow=5, echo=False, echo_pool=True, pool_pre_ping=True)
     # engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_recycle=(3600 * 7), pool_size=5, max_overflow=10, pool_pre_ping=True)
 
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+                    #    pool_recycle=(3600 * 7), pool_size=3, max_overflow=5, echo=False, echo_pool=True, pool_pre_ping=True)
 
 # @event.listens_for(engine, "connect")ㄹ
 # def connect(dbapi_connection, connection_record):
@@ -35,3 +40,4 @@ else:
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+print('db 연결 성공')

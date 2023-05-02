@@ -82,7 +82,7 @@ class UserBanned(Base):
     uid = Column(Integer, primary_key=True)
     created = Column(DateTime)
     expired = Column(DateTime, default=None)
-    msg = Column(String, default=None)
+    msg = Column(String(1000), default=None)
     tag = Column(String, default=None)
     
     

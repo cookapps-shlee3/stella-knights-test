@@ -1,16 +1,16 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+# FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-# 
-WORKDIR /app
+# # 
+# WORKDIR /app
 
-# 
-COPY . /app
+# # 
+# COPY . /app
 
-#
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+# #
+# RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-#
-ENV PRODUCTION="prod" PORT=8001
+# #
+# ENV PRODUCTION="prod" PORT=8001
 
-# 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "-w", "8", "-b", "0.0.0.0:8001", "--log-level", "info"]
+# # 
+# CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "-w", "8", "-b", "0.0.0.0:8001", "--log-level", "info"]
