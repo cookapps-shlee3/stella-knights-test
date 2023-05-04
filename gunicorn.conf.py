@@ -5,21 +5,21 @@ import sys
 import logging
 from gunicorn.glogging import Logger
 from loguru import logger
-from app.config.settings import settings
+from app.config.settings import conf
 from app.util.util import is_prod
 
-ENVIRONMENT = os.environ.get('PRODUCTION')
+# ENVIRONMENT = os.environ.get('PRODUCTION')
 
 workers_per_core_str = os.getenv("WORKERS_PER_CORE", "1")
 web_concurrency_str = os.getenv("WEB_CONCURRENCY", None)
 
 host = "localhost"
-port = settings.PORT
+port = conf().PORT
 # socket과 연결 할때는 다음과 같이 설정하도록 함.
 # host = os.getenv("HOST", "unix")
 # port = os.getenv("PORT", "///tmp/asgi.sock")
 bind_env = os.getenv("BIND", None)
-if ENVIRONMENT == 'prod':
+if conf().ENVIRONMENT == 'prod':
     use_loglevel = os.getenv("LOG_LEVEL", "WARNING")
 else:
     use_loglevel = os.getenv("LOG_LEVEL", "INFO")
@@ -64,7 +64,7 @@ if web_concurrency_str:
     web_concurrency = int(web_concurrency_str)
     assert web_concurrency > 0
 else:
-    if settings.ENVIRONMENT  == 'dev':
+    if conf().ENVIRONMENT  == 'dev':
         web_concurrency = 1
     else:
         web_concurrency = max(int(default_web_concurrency), 2)
@@ -97,7 +97,7 @@ for name in [
 
 
 logger.configure(handlers=[{"sink": sys.stdout, "serialize": JSON_LOGS}])
-if settings.ENVIRONMENT  == 'dev':
+if conf().ENVIRONMENT == 'dev':
     logger.add("./logs/log-{time:YYYY-MM-DD}.txt", rotation="00:00", retention="3 days",level=loglevel)
 # else:
 #     logger.add("./logs/log-{time:YYYY-MM-DD}.txt", rotation="00:00", level=loglevel)

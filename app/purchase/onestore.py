@@ -2,7 +2,7 @@ import json
 import requests
 from sqlalchemy.orm import Session
 from app.crud import crud_payment
-from app.config.settings import settings
+from app.config.settings import conf
 from app.config.settings import Constant
 
 def get_oauth_onestore():
@@ -32,7 +32,7 @@ def onestore_varify(db:Session, uid:int, id:int, product_id:str, purchase_token:
     access_token = get_oauth_onestore()
     
     if access_token:
-        if settings.ENVIRONMENT != 'prod':
+        if conf().ENVIRONMENT != 'prod':
             onestore_host = "https://sbpp.onestore.co.kr"
         else:
             onestore_host = "https://apis.onestore.co.kr"

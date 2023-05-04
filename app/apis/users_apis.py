@@ -11,7 +11,7 @@ from app.crud import crud_user_members, crud_user_server, crud_user_data, crud_p
 from app.crud.cache import crud_user_currency
 from app.util.util import get
 from app.config.settings import Constant
-from app.config.settings import settings
+from app.config.settings import conf
 from app.cache import CacheController
 from app.classes.CurrencyManager import CurrencyManager
 from app.rabbit_mq import rabbit_api

@@ -26,3 +26,6 @@ __pycache__
 .vscode/settings.json
 
 logs/*
+
+# envs
+local_env.sh

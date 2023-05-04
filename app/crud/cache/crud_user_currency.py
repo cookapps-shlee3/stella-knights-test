@@ -2,7 +2,6 @@
 from datetime import date, datetime
 from sqlalchemy.orm import Session
 from app.db.models.cache.currency import *
-from app.config.settings import settings
 
 
 def get_user_currency_all(db:Session, uid:int):

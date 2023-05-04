@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 from typing import Optional
 from app.db.connection import get_db
-from app.params.ReqParam import AuthReqParam
+from app.params.ReqParam import AuthReqParam, BaseReqParam
 from app.params.ReqParam import ServerReqParam
 from app.apis import auth_apis
 from app.auth.auth_bearer import JWTBearer
@@ -14,7 +14,27 @@ auth_router = APIRouter(prefix='/auth')
 
 @auth_router.post("/login/v2")
 async def login(req:AuthReqParam, db:Session = Depends(get_db)):
+    """
+    1. Description
+    - 로그인
     
+    2. Request Parameter
+    ```
+    {
+        "p": "android",
+        "d": "111333333",
+        "h": "",
+        "v": 1003,
+        "version": 0,
+        "uid": 0,
+        "pl111111atform": "",
+        "device_id": "",
+        "auth_id": "",
+        "auth_pw": "",
+        "auth_platm": "facebook"
+    }
+    ```
+    """
     if not req.auth_id and not req.auth_platform:
         req.auth_platform = Constant.AUTH_PLATFORM_GUEST
     

@@ -10,7 +10,7 @@ from app.db.models.user import UserDataBattle, UserBanned
 from app.db.models.log import LogBanned, LogUserData
 from pymongo import MongoClient
 from pymongo import ReturnDocument
-from app.config.settings import settings
+from app.config.settings import conf
 from sqlalchemy.dialects.mysql import insert
 
 def get_user_key(uid:int, category:str) -> str:
@@ -34,8 +34,8 @@ def get_all(db:Session, uid:int):
     return ret
 
 def get_all_by_mongo(uid:int):
-    with MongoClient(settings.MONGO_URL) as client:
-        msg_collection = client[settings.MONGO_DATABASE][settings.MONGO_COLLECTION]
+    with MongoClient(conf().MONGO_URL) as client:
+        msg_collection = client[conf().MONGO_DATABASE][conf().MONGO_COLLECTION]
         mgs_list = msg_collection.find({'uid':uid})
     
         ret = {}
@@ -45,8 +45,8 @@ def get_all_by_mongo(uid:int):
         return ret
 
 def get_by_mongo(db:Session, uid:int, category:str):
-    with MongoClient(settings.MONGO_URL) as client:
-        msg_collection = client[settings.MONGO_DATABASE][settings.MONGO_COLLECTION]
+    with MongoClient(conf().MONGO_URL) as client:
+        msg_collection = client[conf().MONGO_DATABASE][conf().MONGO_COLLECTION]
         key = get_user_key(uid, category)
         mgs_list = msg_collection.find_one({'_id':key})
     
@@ -59,8 +59,8 @@ def get_by_mongo(db:Session, uid:int, category:str):
 
 
 def save_by_mongo(uid:int, category:str, data:dict):
-    with MongoClient(settings.MONGO_URL) as client:
-        msg_collection = client[settings.MONGO_DATABASE][settings.MONGO_COLLECTION]
+    with MongoClient(conf().MONGO_URL) as client:
+        msg_collection = client[conf().MONGO_DATABASE][conf().MONGO_COLLECTION]
         key = get_user_key(uid, category)
         
         # result = msg_collection.find_one_and_replace( filter={'_id':key}, replacement={'uid':uid, 'category':category, 'data':data}, upsert=True)

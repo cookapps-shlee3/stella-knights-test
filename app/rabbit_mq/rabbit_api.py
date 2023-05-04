@@ -1,15 +1,15 @@
 from datetime import datetime
 import json
-from app.config.settings import settings
+from app.config.settings import conf
 import pika
 from loguru import logger
 
 
 async def send_new_user(uid:int, nickname:str, device_id:str, auth_id:str, platform:str, region:str):
-    if settings.RABBITMQ_ENABLE:
+    if conf().RABBITMQ_ENABLE:
         try:
             with pika.BlockingConnection(
-                pika.URLParameters(settings.RABBITMQ_HOST)
+                pika.URLParameters(conf().RABBITMQ_HOST)
             ) as connection:
                 # connection.channel()
                 channel = connection.channel()
@@ -31,10 +31,10 @@ async def send_new_user(uid:int, nickname:str, device_id:str, auth_id:str, platf
 
 
 async def delete_user(uid:int):
-    if settings.RABBITMQ_ENABLE:
+    if conf().RABBITMQ_ENABLE:
         try:
             with pika.BlockingConnection(
-                pika.URLParameters(settings.RABBITMQ_HOST)
+                pika.URLParameters(conf().RABBITMQ_HOST)
             ) as connection:
                 # connection.channel()
                 channel = connection.channel()
@@ -51,10 +51,10 @@ async def delete_user(uid:int):
 
 
 async def select_user_server(uid:int, server:int):
-    if settings.RABBITMQ_ENABLE:
+    if conf().RABBITMQ_ENABLE:
         try:
             with pika.BlockingConnection(
-                pika.URLParameters(settings.RABBITMQ_HOST)
+                pika.URLParameters(conf().RABBITMQ_HOST)
             ) as connection:
                 # connection.channel()
                 channel = connection.channel()
@@ -72,10 +72,10 @@ async def select_user_server(uid:int, server:int):
 
 
 async def update_user_nickname(uid:int, nickname:str):
-    if settings.RABBITMQ_ENABLE:
+    if conf().RABBITMQ_ENABLE:
         try:
             with pika.BlockingConnection(
-                pika.URLParameters(settings.RABBITMQ_HOST)
+                pika.URLParameters(conf().RABBITMQ_HOST)
             ) as connection:
                 # connection.channel()
                 channel = connection.channel()
@@ -93,10 +93,10 @@ async def update_user_nickname(uid:int, nickname:str):
 
 
 async def update_user_device(uid:int, device:str):
-    if settings.RABBITMQ_ENABLE:
+    if conf().RABBITMQ_ENABLE:
         try:
             with pika.BlockingConnection(
-                pika.URLParameters(settings.RABBITMQ_HOST)
+                pika.URLParameters(conf().RABBITMQ_HOST)
             ) as connection:
                 # connection.channel()
                 channel = connection.channel()

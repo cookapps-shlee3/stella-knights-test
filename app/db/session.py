@@ -3,7 +3,7 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from app.config.settings import settings
+from app.config.settings import conf
 
 logging.basicConfig()
 logging.getLogger('sqlalchemy.pool').setLevel(logging.DEBUG)
@@ -11,7 +11,8 @@ logging.getLogger('sqlalchemy.pool').setLevel(logging.DEBUG)
 
 # SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 
-SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://admin:qAvZfEVBv5KZjPT2JQHY@saju-db-prod.cavrntzv1fhs.ap-northeast-2.rds.amazonaws.com:3306/stella-knight-test?charset=utf8mb4'
+SQLALCHEMY_DATABASE_URL = conf().DATABASE_URL
+print('---------------DB_URL_DEV_TEST-------------- : ', SQLALCHEMY_DATABASE_URL)
 ENVIRONMENT = os.environ.get('PRODUCTION')
 
 # if ENVIRONMENT == 'prod':
@@ -40,4 +41,3 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-print('db 연결 성공')

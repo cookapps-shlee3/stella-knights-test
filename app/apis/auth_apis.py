@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.params.ReqParam import AuthReqParam
 from app.params.ReqParam import ServerReqParam
 from app.crud import crud_user_members, crud_user_devices, crud_user_platforms, crud_user_banned, crud_user_server, crud_retention, crud_log
-from app.config.settings import Constant, settings
+from app.config.settings import Constant, conf
 from app.params.ResParam import get_response, ResponseCode
 from app.auth import auth_handler
 from app.rabbit_mq import rabbit_api
@@ -95,7 +95,7 @@ async def auth_index(req:AuthReqParam, db:Session):
     if is_new:
         crud_user_server.create(db, uid, uid, 0, 1)
         if user_data:
-            await rabbit_api.send_new_user(uid, nickname, req.device_id, req.auth_id, req.platform, settings.LOCATION)
+            await rabbit_api.send_new_user(uid, nickname, req.device_id, req.auth_id, req.platform, conf().LOCATION)
         
     server_infos = crud_user_server.get_all(db, uid)
     uid_info = []

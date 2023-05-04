@@ -2,7 +2,6 @@
 from datetime import date, datetime
 from sqlalchemy.orm import Session
 from app.db.models.cache.currency_log import *
-from app.config.settings import settings
 
 def get_user_currency_orm(uid:int):
     user_currency = globals()[f"UserCurrencyLog_{uid % 10}"]

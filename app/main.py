@@ -10,7 +10,7 @@ from fastapi_cache.backends.inmemory import InMemoryBackend
 from app.routers import app_router
 from starlette.exceptions import HTTPException
 from app.middleware.middleware import ApplicationJsonMiddleware, LimitUploadSize
-from app.config.settings import settings
+from app.config.settings import conf
 from app.redis.redisCache import redis
 from fastapi.responses import HTMLResponse
 
@@ -37,13 +37,14 @@ exceptions = {
 }
 
 ## 여기에서 분기를 태워서 docs를 볼수 없도록 변경해야 함.
-if settings.ENVIRONMENT == 'prod':
-    app = FastAPI(docs_url=None, redoc_url=None, exception_handlers=exceptions)    
-elif (settings.ENVIRONMENT == 'dev') or (settings.ENVIRONMENT == 'stage') or (settings.ENVIRONMENT == 'local'):
-    print('-----local-0-------------')
-    app = FastAPI(openapi_prefix="/unknown-knight-idle", root_path="/unknown-knight-idle", exception_handlers=exceptions)
-else:
-    app = FastAPI(exception_handlers=exceptions)
+# if settings.ENVIRONMENT == 'prod':
+#     app = FastAPI(docs_url=None, redoc_url=None, exception_handlers=exceptions)    
+# elif (settings.ENVIRONMENT == 'dev') or (settings.ENVIRONMENT == 'stage') or (settings.ENVIRONMENT == 'local'):
+print('-----local-0-------------')
+# app = FastAPI(openapi_prefix="/unknown-knight-idle", root_path="/unknown-knight-idle", exception_handlers=exceptions)
+app = FastAPI()
+# else:
+#     app = FastAPI(exception_handlers=exceptions)
 
 
 app.include_router(app_router.router)
@@ -98,7 +99,7 @@ async def exception_hander(request:Request, exc:KeyError):
 @app.on_event("startup")
 async def startup():
     FastAPICache.init(InMemoryBackend(), prefix='fastapi-cache')
-    await redis.init_redis(host=settings.REDIS_HOST+':'+str(settings.REDIS_PORT),password=None)
+    await redis.init_redis(host=conf().REDIS_HOST+':'+str(conf().REDIS_PORT),password=None)
     
 @app.on_event("shutdown")
 async def shutdown():

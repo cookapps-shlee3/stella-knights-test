@@ -14,7 +14,7 @@ from app.db.models.user import UserDataBattle
 from fastapi_cache.decorator import cache
 from loguru import logger
 from pymongo import MongoClient
-from app.config.settings import settings
+from app.config.settings import conf
 from app.db.models.user import UserDataMongo
 
 
@@ -37,7 +37,7 @@ test_router = APIRouter()
 
 @test_router.get("/test")
 async def test_list(db:Session=Depends(get_db)):
-    with MongoClient(settings.MONGO_URL) as client:
+    with MongoClient(conf().MONGO_URL) as client:
         msg_collection = client['afk-dungeon']['user_save']
         msg_list = msg_collection.find({"_id":11111})
         print(msg_list[0])
@@ -53,7 +53,7 @@ async def test_list(db:Session=Depends(get_db)):
     user_data.id = 11113
     user_data.category = "test"
     user_data.data = {"test_value":1}
-    with MongoClient(settings.MONGO_URL) as client:
+    with MongoClient(conf().MONGO_URL) as client:
         msg_collection = client['afk-dungeon']['user_save']
         result = msg_collection.insert_one(jsonable_encoder(user_data))
     
@@ -62,7 +62,7 @@ async def test_list(db:Session=Depends(get_db)):
 @test_router.post("/testtt")
 async def test_list(data:BaseReqParam, db:Session = Depends(get_db), auth:dict=Depends(JWTBearer())):
 #async def test_listttt(req:BattleSaveReqParam,  data:BaseReqParam, db:Session = Depends(get_db), service: Service = Depends(Provide[Container.service])):
-    with MongoClient(settings.MONGO_URL) as client:
+    with MongoClient(conf().MONGO_URL) as client:
         msg_collection = client['afk-dungeon']['user_save']
         msg_collection.find({'_id':data.uid})
     

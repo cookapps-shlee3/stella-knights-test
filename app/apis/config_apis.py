@@ -8,7 +8,7 @@ from app.params.ReqParam import BaseReqParam, ConfigReqParam
 from app.config.settings import Constant
 from app.crud import crud_config, crud_user_devices, crud_user_banned, crud_log
 from app.helper import server_helper, rankings_helper
-from app.config.settings import Constant, settings
+from app.config.settings import Constant, conf
 from app.redis.redisCache import redis
 from app.util.util import get
 
@@ -145,13 +145,13 @@ async def version(req:BaseReqParam, db:Session, request:Request):
     spec_ver = int(spec_version)
     lang_ver = int(language_version)
     
-    if settings.USE_PRE_DEST:
-        if req.v >= settings.PRE_DEST_VERSION:
-            url = settings.PRE_DEST
-            lang = settings.PRE_LANG_DEST
-            cdn = settings.PRE_SPEC_DEST
-            spec_ver = settings.PRE_SPEC_VER
-            lang_ver = settings.PRE_LANG_VER
+    if conf().USE_PRE_DEST:
+        if req.v >= conf().PRE_DEST_VERSION:
+            url = conf().PRE_DEST
+            lang = conf().PRE_LANG_DEST
+            cdn = conf().PRE_SPEC_DEST
+            spec_ver = conf().PRE_SPEC_VER
+            lang_ver = conf().PRE_LANG_VER
     
     response = {
         'status' : status,

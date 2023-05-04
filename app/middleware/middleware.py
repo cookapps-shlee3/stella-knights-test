@@ -11,7 +11,7 @@ from starlette.responses import Response
 from starlette import status
 from app.db.connection import get_db
 from app.util.util import get
-from app.config.settings import settings
+from app.config.settings import conf
 from datetime import datetime
 from app.db.models.log import NetworkRecoder
 
@@ -159,13 +159,13 @@ class _ApplicationJsonResponder:
         # 암호화 처리에 대한 부분을 여기서 진행하도록 한다.
         if k:
             # 암호화를 풀어서 스트링을 얻고 얻은 값을 obj에 넣어서 진행해 주도록 한다.
-            decipyer = AES.new(settings.AES_KEY.encode("utf8"), AES.MODE_ECB)
+            decipyer = AES.new(conf().AES_KEY.encode("utf8"), AES.MODE_ECB)
             k = base64.b64decode(k)
             msg_dec = decipyer.decrypt(k)
             msg_dec = unpad(msg_dec, 16)
             obj = json.loads(msg_dec)
         else:
-            if settings.ENVIRONMENT == 'prod':
+            if conf().ENVIRONMENT == 'prod':
                 raise HTTPException(status_code=404)
             else:
                 pass
@@ -174,10 +174,10 @@ class _ApplicationJsonResponder:
         logger.warning(self.path + " = " + json.dumps(obj))
         version = get(obj, 'v')
         
-        if (int(version) >= int(settings.PRE_DEST_VERSION)):
+        if (int(version) >= int(conf().PRE_DEST_VERSION)):
             self.need_cipyer = True
         
-        if settings.ENVIRONMENT != 'prod':
+        if conf().ENVIRONMENT != 'prod':
             self.uid = get(obj, 'uid')
             if not self.uid:
                 self.uid = 0
@@ -221,7 +221,7 @@ class _ApplicationJsonResponder:
                 self.strResponse = json.dumps(obj, ensure_ascii = False)
 
                 if self.need_cipyer or (self.path == '/time'):
-                    cipyer = AES.new(settings.AES_KEY.encode("utf8"), AES.MODE_ECB)
+                    cipyer = AES.new(conf().AES_KEY.encode("utf8"), AES.MODE_ECB)
                     msg_enc = pad(body, 16)
                     msg_enc = cipyer.encrypt(msg_enc)
                     k = base64.b64encode(msg_enc)
@@ -233,7 +233,7 @@ class _ApplicationJsonResponder:
                     
             await self.send(self.start_message)
 
-            if settings.ENVIRONMENT != 'prod':
+            if conf().ENVIRONMENT != 'prod':
                 try:
                     recoder = NetworkRecoder()
                     recoder.uid = self.uid
